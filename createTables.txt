@@ -1,0 +1,63 @@
+CREATE TABLE IF NOT EXISTS brand (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(128) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS processor (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(128) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS resolution (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(128) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS random_access_memory (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(128) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS video_card (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(128) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS storage_drive (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(128) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS connectivity (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(128) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS color (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(128) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS operating_system (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(128) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Model (
+    id_brand INTEGER REFERENCES brand (id) NOT NULL,
+    id SERIAL NOT NULL,
+    name VARCHAR(128) NOT NULL,
+    id_processor INTEGER REFERENCES processor (id) ON DELETE CASCADE,
+    id_resolution INTEGER REFERENCES resolution (id) ON DELETE CASCADE,
+    id_random_access_memory INTEGER REFERENCES random_access_memory (id) ON DELETE CASCADE,
+    id_video_card INTEGER REFERENCES video_card (id) ON DELETE CASCADE,
+    id_storage_drive INTEGER REFERENCES storage_drive (id) ON DELETE CASCADE,
+    id_connectivity INTEGER REFERENCES connectivity (id) ON DELETE CASCADE,
+    id_color INTEGER REFERENCES color (id) ON DELETE CASCADE,
+    id_operating_system INTEGER REFERENCES operating_system (id) ON DELETE CASCADE,
+    width REAL,
+    depth REAL,
+    height REAL, 
+    weight REAL,
+    PRIMARY KEY (id_brand, id)
+);
